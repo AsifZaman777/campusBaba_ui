@@ -83,9 +83,8 @@ export default function LoginPage() {
                 toast.error(result.error);
             } else if (result?.ok) {
                 toast.success("Login successful!");
-                // Let the middleware/root page redirect to the role-specific dashboard
-                router.push("/");
-                router.refresh();
+                // Force a hard navigation to ensure middleware runs with fresh cookie state
+                window.location.href = "/";
             }
         } catch (err: any) {
             toast.error(err.message || "An error occurred during login");

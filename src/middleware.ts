@@ -49,6 +49,7 @@ export default withAuth(
       // Let withAuth know which routes need to be protected
       authorized: ({ token }) => !!token,
     },
+    secret: process.env.NEXTAUTH_SECRET,
   },
 );
 
