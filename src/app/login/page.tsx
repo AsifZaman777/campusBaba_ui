@@ -11,6 +11,7 @@ import { toast } from "@/lib/toast";
 import api from "@/lib/axios";
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
 
+
 type Mode = "login" | "register";
 
 const blankReg = {
@@ -173,11 +174,11 @@ export default function LoginPage() {
                 <div className="card p-8">
                     <div className="text-center mb-6">
                         <h1 className="text-2xl font-bold mb-1">
-                            {mode === "login" ? "Welcome Back" : "Parent Registration"}
+                            {mode === "login" ? "Asif Sir Coaching (Demo)" : "Parent Registration"}
                         </h1>
                         <p className="text-[--muted-foreground] text-sm">
                             {mode === "login"
-                                ? "Sign in to your Schooler account"
+                                ? "Sign in to your CampusBaba account"
                                 : "Create a parent account to access the portal"}
                         </p>
                     </div>
@@ -331,7 +332,7 @@ export default function LoginPage() {
                         </form>
                     )}
 
-                    <div className="mt-5 text-center">
+                    {/* <div className="mt-5 text-center">
                         {mode === "login" ? (
                             <button type="button" onClick={() => switchMode("register")}
                                 className="text-sm text-[--primary] hover:underline" disabled={isLoading}>
@@ -343,15 +344,51 @@ export default function LoginPage() {
                                 Already have an account? Sign in
                             </button>
                         )}
-                    </div>
+                    </div> */}
 
                     <div className="mt-4 text-center text-xs text-[--muted-foreground]">
-                        <p>Schooler Management System v1.0</p>
+                        <p>CampusBaba - Your Campus Portal</p>
                         {mode === "login" && (
-                            <p className="mt-0.5">Staff access is granted by an administrator</p>
+                            <>
+                                <p className="mt-0.5">Powered by <a href="https://campusbaba.com" className="text-[--primary] hover:underline" target="_blank" rel="noopener noreferrer">campusbaba.com</a></p>
+                            </>
                         )}
                     </div>
                 </div>
+            </div>
+            <div className="fixed bottom-4 bg-white border-dashed border-2 p-2 rounded-sm text-xs max-w-sm z-50">
+                <h3 className="font-semibold text-center">Roles Credentials</h3>
+                <table className="w-full text-left">
+                    <thead>
+                        <tr className="text-[--muted-foreground] border-b">
+                            <th className="pb-1 pr-4 font-medium">Role</th>
+                            <th className="pb-1 pr-4 font-medium">Email</th>
+                            <th className="pb-1 font-medium">Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr className="border-b last:border-0 border-dashed">
+                            <td className="py-2 pr-4 font-semibold text-blue-600">Admin</td>
+                            <td className="py-2 pr-4 font-mono">zaman@gmail.com</td>
+                            <td className="py-2 font-mono">eram1234</td>
+                        </tr>
+                        <tr>
+                            <td className="py-2 pr-4 font-semibold text-purple-600">Teacher</td>
+                            <td className="py-2 pr-4 font-mono">robi@gmail.com</td>
+                            <td className="py-2 font-mono">eram1234</td>
+                        </tr>
+                        <tr>
+                            <td className="py-2 pr-4 font-semibold text-purple-600">Parent</td>
+                            <td className="py-2 pr-4 font-mono">mokbul@gmail.com</td>
+                            <td className="py-2 font-mono">eram1234</td>
+                        </tr>
+                        <tr>
+                            <td className="py-2 pr-4 font-semibold text-purple-600">Student</td>
+                            <td className="py-2 pr-4 font-mono">aminul@gmail.com</td>
+                            <td className="py-2 font-mono">eram1234</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     );

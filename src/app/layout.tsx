@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Schooler — School Management System",
+  title: "CampusBaba — Your Campus Portal",
   description: "Manage students, teachers, attendance, exams, payments and more.",
 };
 

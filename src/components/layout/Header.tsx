@@ -144,11 +144,11 @@ export function Header({ title, onMenuClick }: HeaderProps) {
                             <div className="px-3 py-2 border-b border-[--border]">
                                 <p className="text-sm font-medium text-[--foreground]">{userName}</p>
                                 <p className="text-xs text-[--muted-foreground]">{user?.email}</p>
-                                {user?.referenceId && (
+                                {/* {user?.referenceId && (
                                     <p className="text-xs text-[--muted-foreground] mt-1">
                                         ID: {user.referenceId}
                                     </p>
-                                )}
+                                )} */}
                             </div>
                             <Button
                                 variant="ghost"
