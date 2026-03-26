@@ -374,17 +374,17 @@ export default function LoginPage() {
                         </tr>
                         <tr>
                             <td className="py-2 pr-4 font-semibold text-purple-600">Teacher</td>
-                            <td className="py-2 pr-4 font-mono">robi@gmail.com</td>
+                            <td className="py-2 pr-4 font-mono">asif@gmail.com</td>
                             <td className="py-2 font-mono">eram1234</td>
                         </tr>
                         <tr>
-                            <td className="py-2 pr-4 font-semibold text-purple-600">Teacher</td>
-                            <td className="py-2 pr-4 font-mono">robi@gmail.com</td>
+                            <td className="py-2 pr-4 font-semibold text-purple-600">Parent</td>
+                            <td className="py-2 pr-4 font-mono">mokbul@gmail.com</td>
                             <td className="py-2 font-mono">eram1234</td>
                         </tr>
                         <tr>
-                            <td className="py-2 pr-4 font-semibold text-purple-600">Teacher</td>
-                            <td className="py-2 pr-4 font-mono">robi@gmail.com</td>
+                            <td className="py-2 pr-4 font-semibold text-purple-600">Student</td>
+                            <td className="py-2 pr-4 font-mono">aminul@gmail.com</td>
                             <td className="py-2 font-mono">eram1234</td>
                         </tr>
                     </tbody>
