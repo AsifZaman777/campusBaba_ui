@@ -1,6 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import { ColumnDef } from "@tanstack/react-table";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Header } from "@/components/layout/Header";
 import { DataTable } from "@/components/datatable/DataTable";
 import { Button } from "@/components/ui/button";
@@ -60,6 +61,7 @@ const RECURRING_TEMPLATES: RecurringTemplate[] = [
 ];
 
 export default function ExpensesPage() {
+    const isMobile = useIsMobile();
     const { expenses, loading, pagination, createExpense, updateExpense, deleteExpense } = useExpenses();
     const [open, setOpen] = useState(false);
     const [editing, setEditing] = useState<Expense | null>(null);
@@ -160,7 +162,7 @@ export default function ExpensesPage() {
             <main className="p-5 space-y-5">
 
                 {/* ── Stat Cards ───────────────────────────────────────────── */}
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="card p-4 space-y-1">
                         <p className="text-xs text-[--muted-foreground]">This Month</p>
                         <p className="text-2xl font-bold">{formatCurrency(totalThisMonth)}</p>
@@ -177,7 +179,7 @@ export default function ExpensesPage() {
                 </div>
 
                 {/* ── Charts ───────────────────────────────────────────────── */}
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="card p-4">
                         <p className="text-xs font-semibold text-[--muted-foreground] mb-3">Monthly Spend (Last 6 Months)</p>
                         <ResponsiveContainer width="100%" height={180}>
@@ -193,13 +195,13 @@ export default function ExpensesPage() {
                         <p className="text-xs font-semibold text-[--muted-foreground] mb-3">By Category</p>
                         <ResponsiveContainer width="100%" height={180}>
                             <PieChart>
-                                <Pie data={categoryChartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={65} label={({ name }) => name}>
+                                <Pie data={categoryChartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} label={({ name }) => name} fontSize={11}>
                                     {categoryChartData.map((entry) => (
                                         <Cell key={entry.name} fill={CATEGORY_COLORS[entry.name] ?? "#94a3b8"} />
                                     ))}
                                 </Pie>
                                 <Tooltip formatter={(v) => formatCurrency(Number(v))} />
-                                <Legend iconSize={10} wrapperStyle={{ fontSize: 11 }} />
+                                {!isMobile && <Legend iconSize={10} wrapperStyle={{ fontSize: 11 }} />}
                             </PieChart>
                         </ResponsiveContainer>
                     </div>
@@ -207,20 +209,20 @@ export default function ExpensesPage() {
                         <p className="text-xs font-semibold text-[--muted-foreground] mb-3">By subcategory</p>
                         <ResponsiveContainer width="100%" height={180}>
                             <PieChart>
-                                <Pie data={subcategoryChartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={65} label={({ name }) => name}>
+                                <Pie data={subcategoryChartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} label={({ name }) => name} fontSize={11}>
                                     {subcategoryChartData.map((entry) => (
                                         <Cell key={entry.name} fill={SUB_CATEGORY_COLORS[entry.name] ?? "#94a3b8"} />
                                     ))}
                                 </Pie>
                                 <Tooltip formatter={(v) => formatCurrency(Number(v))} />
-                                <Legend iconSize={10} wrapperStyle={{ fontSize: 11 }} />
+                                {!isMobile && <Legend iconSize={10} wrapperStyle={{ fontSize: 11 }} />}
                             </PieChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
 
                 {/* ── Status breakdown ─────────────────────────────────────── */}
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                     {statusChartData.map(s => (
                         <div key={s.name} className="card px-4 py-2 flex items-center gap-2 flex-1">
                             <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: STATUS_COLORS[s.name] ?? "#94a3b8" }} />
@@ -233,7 +235,7 @@ export default function ExpensesPage() {
                 {/* ── Recurring Templates ──────────────────────────────────── */}
                 <div>
                     <h3 className="text-sm font-semibold mb-3">Monthly Recurring Expenses</h3>
-                    <div className="grid grid-cols-4 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                         {RECURRING_TEMPLATES.map(t => (
                             <button key={t.label} onClick={() => openFromTemplate(t)}
                                 className="card p-3 flex items-center gap-3 hover:border-[--primary] hover:shadow-sm transition-all text-left group">
@@ -259,7 +261,7 @@ export default function ExpensesPage() {
 
             <FormDialog open={open} onClose={() => setOpen(false)} title={editing ? "Edit Expense" : "Add Expense"}>
                 <form onSubmit={handleSubmit} className="space-y-3">
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <Label>Category</Label>
                             <FormCombobox
